@@ -1,0 +1,77 @@
+# .acp-ignore — ACE v0.1 example
+#
+# This file declares what AI agents MAY and MAY NOT read in this repository.
+# Compliant tools MUST refuse to read paths matched by `deny:` entries and
+# MUST log violations to audit.log. `.gitignore`-style glob patterns are used.
+#
+# Sections:
+#   1. Default-deny  — shipped-in secret list (never remove)
+#   2. Repo-specific deny
+#   3. Explicit allow (overrides deny)
+#   4. Bypass (time-limited, approver required)
+
+# ================================================================
+# 1. Default-deny — ships with ACE v0.1, all compliant tools
+#    SHOULD treat the following as implicitly denied even without
+#    this file. Listed here for transparency.
+# ================================================================
+
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+*.gpg
+.aws/credentials
+.aws/config
+.ssh/**
+.netrc
+.npmrc
+.pypirc
+secrets/**
+credentials/**
+private/**
+*.sqlite
+*.sqlite3
+*.db
+
+# ================================================================
+# 2. Repo-specific deny — add patterns unique to this repository
+# ================================================================
+
+deny: internal/legal/**
+deny: **/*.customer-data.json
+deny: docs/strategy/**          # non-public strategy docs, if they ever land here
+
+# ================================================================
+# 3. Explicit allow — overrides both default-deny and repo-specific
+#    deny. Use sparingly; each allow is an attack surface.
+# ================================================================
+
+allow: .env.example
+allow: docs/public-keys/*.pem
+allow: examples/test-fixture.sqlite
+
+# ================================================================
+# 4. Bypass — TIME-LIMITED, HUMAN-APPROVED temporary access.
+#    Every bypass MUST include `approver` and `expires`.
+#    Tools MUST refuse bypasses missing either field, and MUST
+#    emit a warning to audit.log whenever a bypass is honored.
+# ================================================================
+
+bypass: debug/live-session.log
+  approver: @ryoma-nakajima
+  expires: 2026-05-01
+  reason: live incident triage — remove after post-mortem
+
+bypass: temp/customer-export-2026-04.csv
+  approver: @ryoma-nakajima
+  expires: 2026-04-20
+  reason: support escalation, redacted copy pending
+
+# ================================================================
+# End of file. Everything not matched above is implicitly ALLOWED.
+# ================================================================

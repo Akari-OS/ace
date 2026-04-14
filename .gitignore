@@ -1,0 +1,65 @@
+# === OS ===
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# === Editor ===
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# === Secrets (ACE dogfood — these would also be in .acp-ignore) ===
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+id_rsa*
+.aws/credentials
+secrets/
+
+# === Node (future tooling / examples) ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.npm/
+.yarn/
+dist/
+build/
+
+# === Rust (future reference implementation) ===
+target/
+Cargo.lock
+**/*.rs.bk
+
+# === Python (future test fixtures) ===
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.egg-info/
+
+# === Logs ===
+*.log
+logs/
+audit.log
+
+# === Coverage / test artifacts ===
+coverage/
+.nyc_output/
+*.lcov
+tarpaulin-report.html
+
+# === Build / temp ===
+tmp/
+.cache/
+
+# === ACE self-hosting artifacts ===
+.ace-cache/
+ace-audit.sarif
