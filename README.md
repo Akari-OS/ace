@@ -74,7 +74,7 @@ allow: docs/public-keys/*.pem
 
 # === Bypass (requires human approval + expiry) ===
 bypass: debug/live-session.log
-  approver: @ryoma-nakajima
+  approver: Akari-OS maintainers
   expires: 2026-05-01
   reason: live incident triage
 ```
