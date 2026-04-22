@@ -587,7 +587,7 @@ status. Once declared stable, a minor version is immutable.
 
 ### v0.1.1 (2026-04-22)
 
-Editorial patch. Resolves all five open issues from Appendix B:
+Editorial patch. Resolves 3 of 5 open issues; defers 2 to v0.2 (see Appendix B):
 
 - **§3.2** — Clarified `bypass:` block termination grammar (indented-continuation model
   with blank-line / new-directive as terminator; added BNF-equivalent prose + example).
