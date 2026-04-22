@@ -5,8 +5,8 @@
 > **扱わない範囲**: AKARI 全体のビジョン、横断戦略、非公開 GTM メモ（それらは Hub に）。
 >
 > - 🌐 正典: [Akari-OS/.github](https://github.com/Akari-OS)
-> - 🏛 Hub (非公開): `PJ26c21_AkariOS` — 横断研究・戦略・Master Index
-> - 🗺 全リポマップ: `PJ26c21_AkariOS/MAP.md`
+> - 🏛 Hub (非公開): `akari-os` — 横断研究・戦略・Master Index
+> - 🗺 全リポマップ: `akari-os/MAP.md`
 
 ---
 

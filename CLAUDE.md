@@ -11,12 +11,12 @@ ACE (Agent Context Engineering Framework) の **公開正典**。
 - **reference 実装**（将来追加、Rust）— Apache 2.0
 - **governance**（README / CONTRIBUTING / CoC / TRADEMARKS / CHANGELOG）
 
-非公開の戦略・競合分析・GTM・価格検討は `~/_project/PJ26c21_AkariOS/docs/strategy/` に置く。このリポには置かない。
+非公開の戦略・競合分析・GTM・価格検討は `~/_project/akari-os/docs/strategy/` に置く。このリポには置かない。
 
 ## 扱わない範囲
 
 - **実装コード** — v0.1 draft 段階では spec のみ。reference 実装は別 subdir or 別リポで将来追加
-- **戦略メモ** — Hub（PJ26c21_AkariOS）に
+- **戦略メモ** — Hub（akari-os）に
 - **AKARI 全体のビジョン** — `Akari-OS/.github` に
 - **他プロトコル**（MCP / AMP / M2C）の詳細 — それぞれの公式リポに pointer
 
@@ -59,4 +59,4 @@ AKARI 共通プレフィックス：
 - 兄弟プロトコル:
   - [Akari-OS/amp](https://github.com/Akari-OS/amp) — Agent Memory Protocol
   - [Akari-OS/m2c](https://github.com/Akari-OS/m2c) — Media to Context
-- Hub（非公開、関係者のみ）: `PJ26c21_AkariOS`
+- Hub（非公開、関係者のみ）: `akari-os`
