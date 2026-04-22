@@ -1,6 +1,6 @@
 ---
 spec-id: ACE-001
-version: 0.1.0-draft
+version: 0.1.1
 status: draft
 created: 2026-04-14
 updated: 2026-04-22
@@ -155,8 +155,25 @@ The following directive prefixes are recognized (one per line, outside comments)
 | `allow: <pattern>` | Override prior deny (including default-deny) for the pattern |
 | `bypass: <pattern>` | Time-limited deny override; MUST include `approver` + `expires` |
 
-A `bypass:` block spans until the next top-level directive or a blank line. Within a
-`bypass:` block:
+A `bypass:` block begins on the line containing `bypass: <pattern>` and ends at the
+first line that is either (a) empty (zero characters after trimming whitespace) or
+(b) a new top-level directive (`deny:`, `allow:`, `bypass:`, or a bare pattern with no
+leading whitespace). Continuation lines MUST be indented by at least one space or tab.
+Implementations MUST reject a `bypass:` block that lacks both `approver:` and `expires:`
+before the block ends.
+
+Example of a well-formed `bypass:` block:
+
+```
+bypass: debug/trace.log
+  approver: @Akari-OS/maintainers
+  expires: 2026-10-01
+  reason: Temporary trace access for incident #42
+
+deny: internal/**
+```
+
+Within a `bypass:` block, the following sub-fields are recognized:
 
 - `approver: <identity>` — REQUIRED. An identity handle (`@github-user`, email, or
   opaque string). Implementations MUST record this in the audit log.
@@ -199,6 +216,13 @@ minor versions.
 An explicit `allow: <pattern>` MUST override both the default-deny list and any
 repo-specific `deny:` for matching paths. `allow:` is evaluated after all `deny:`
 directives regardless of file order.
+
+When multiple `allow:` entries match the same path, the **most-specific pattern wins**,
+where specificity is defined as the number of non-wildcard path segments. If two
+patterns have equal specificity, the **last** matching `allow:` in file order wins.
+
+Example: given `allow: docs/**` and `allow: docs/public-keys/*.pem`, the second
+pattern is more specific and governs `docs/public-keys/ca.pem`.
 
 Rationale: default-deny protects secrets, but repos must be able to exempt truly
 public fixtures (e.g., `.env.example`, `docs/public-keys/*.pem`) without loss of
@@ -561,6 +585,18 @@ status. Once declared stable, a minor version is immutable.
 
 ## 10. Changelog
 
+### v0.1.1 (2026-04-22)
+
+Editorial patch. Resolves all five open issues from Appendix B:
+
+- **§3.2** — Clarified `bypass:` block termination grammar (indented-continuation model
+  with blank-line / new-directive as terminator; added BNF-equivalent prose + example).
+- **§3.4** — Resolved `allow:` ordering ambiguity: most-specific pattern wins; last
+  entry wins on tie.
+- **Appendix B** — Items 3 (per-agent access control) and 4 (semantic lint score
+  normalisation) explicitly deferred to v0.2 with rationale.
+- **Added** `spec/v0.1/ja/protocol.md` — Japanese translation (informative).
+
 ### v0.1.0-draft (2026-04-14)
 
 Initial public draft. No prior versions.
@@ -631,13 +667,26 @@ updated: 2026-04-14
 ---
 ```
 
-## 13. Appendix B — Open issues for v0.1 → v0.2
+## 13. Appendix B — Remaining considerations for v0.2+
 
-- Precise grammar for `bypass:` block termination (blank line vs indented continuation)
-- Ambiguity in `allow:` ordering when multiple `allow:` entries conflict
-- How to express per-agent (not just per-path) access control without inventing a
-  capability language — deferred to v0.2
-- Whether semantic lint confidence scores should be normalized across LLM vendors
-- Japanese translation (`spec/v0.1/ja/protocol.md`) — RECOMMENDED for v0.1.1
+All five issues listed in v0.1.0-draft have been resolved or explicitly deferred in the
+v0.1.1 editorial patch.
+
+### Resolved in v0.1.1
+
+| Issue | Resolution |
+|---|---|
+| `bypass:` block termination grammar | §3.2 now specifies indented-continuation model with prose + example |
+| `allow:` ordering when multiple entries conflict | §3.4 now specifies most-specific-wins; last-in-file on tie |
+| Japanese translation | `spec/v0.1/ja/protocol.md` added |
+
+### Deferred to v0.2
+
+- **Per-agent access control** — Expressing access control by agent identity
+  (`@claude-code`, `@cursor`) rather than path requires inventing a capability language.
+  Deferred to v0.2 to gather implementation experience first.
+- **Semantic lint confidence score normalisation** — Normalising scores across LLM
+  vendors requires sufficient benchmark data. Will be stabilised in v0.2 alongside the
+  semantic lint ruleset.
 
 Issues are tracked at <https://github.com/Akari-OS/ace/issues>.

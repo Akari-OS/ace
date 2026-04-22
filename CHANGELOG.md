@@ -4,6 +4,27 @@ All notable changes to the ACE (Agent Context Engineering Framework) specificati
 documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and ACE follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html) at the spec level.
 
+## [v0.1.1] — 2026-04-22
+
+Editorial patch to `spec/v0.1/protocol.md`. No breaking changes.
+
+### Added
+
+- **Japanese translation** (`spec/v0.1/ja/protocol.md`). Informative; English remains
+  normative. Mirrors all §§0–13 and appendices.
+
+### Fixed (Open issues from v0.1.0-draft)
+
+- **`bypass:` block termination** (§3.2): Specified the indented-continuation model.
+  A `bypass:` block ends at the first empty line or new top-level directive. Added
+  BNF-equivalent prose and a worked example.
+- **`allow:` ordering** (§3.4): Resolved ambiguity when multiple `allow:` entries
+  match the same path. Most-specific pattern wins; last entry wins on tie.
+- **Per-agent access control** and **semantic lint score normalisation**: Explicitly
+  deferred to v0.2 with rationale (Appendix B).
+
+---
+
 ## [v0.1.0-draft] — 2026-04-14
 
 Initial public draft of the ACE Framework. See [`spec/v0.1/protocol.md`](spec/v0.1/protocol.md).
