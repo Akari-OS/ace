@@ -3,9 +3,11 @@ spec-id: ACE-001
 version: 0.1.0-draft
 status: draft
 created: 2026-04-14
-updated: 2026-04-14
+updated: 2026-04-22
 ai-context: claude-code
-related-specs: []
+related-specs:
+  - AMP v0.1 (github.com/Akari-OS/amp)
+  - M2C v0.2 (github.com/Akari-OS/m2c)
 ---
 
 # ACE Framework Specification — v0.1 (draft)
