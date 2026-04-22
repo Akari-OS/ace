@@ -29,6 +29,7 @@
 | Path | Status |
 |---|---|
 | [`../spec/v0.1/protocol.md`](../spec/v0.1/protocol.md) | draft |
+| [`../spec/v0.1/ja/protocol.md`](../spec/v0.1/ja/protocol.md) | draft (informative, ja) |
 
 ### Examples
 

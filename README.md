@@ -120,7 +120,7 @@ ACE positions itself as a **reference model** across the agent context stack, de
 
 ## Specification
 
-**Latest:** v0.1 (draft)
+**Latest:** v0.1.1
 
 ```
 spec/
