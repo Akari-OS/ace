@@ -67,11 +67,6 @@ bypass: debug/live-session.log
   expires: 2026-05-01
   reason: live incident triage — remove after post-mortem
 
-bypass: temp/customer-export-2026-04.csv
-  approver: @ryoma-nakajima
-  expires: 2026-04-20
-  reason: support escalation, redacted copy pending
-
 # ================================================================
 # End of file. Everything not matched above is implicitly ALLOWED.
 # ================================================================
