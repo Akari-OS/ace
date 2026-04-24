@@ -1,5 +1,9 @@
 # CLAUDE.md — ACE リポジトリ
 
+> **共通規約**: エコシステム全体のコミットメッセージ規約・コード言語・日付形式・secrets 管理は
+> 親 `30_products/akari-os/CLAUDE.md §共通規約（子リポ共通）` を参照（Claude Code は階層化して自動読込）。
+> 本ファイルは**リポ固有の規約**のみを扱う。
+
 > Akari-OS/ace の開発ルール（AI / 人間共通）。
 > AKARI エコシステムの公開プロトコルリポ。非公開戦略・GTM メモは絶対に置かない。
 
@@ -32,23 +36,17 @@ ACE (Agent Context Engineering Framework) の **公開正典**。
 - 後方互換の軽微修正のみ
 - 破壊的変更は v0.2+ delta spec
 
-## コミット規約
+## コミット規約（リポ固有の追加）
 
-AKARI 共通プレフィックス：
+親の共通プレフィックス (`[機能追加]` `[バグ修正]` `[ドキュメント]` `[リファクタ]`) に加え、ACE では以下を使用：
 
 - `[仕様]` spec 変更
-- `[ドキュメント]` README / CHANGELOG / ガイド
-- `[バグ修正]` 誤字・リンク切れ
-- `[リファクタ]` 構成変更
 - `[セキュリティ]` security 関連
 
 **DCO 必須**: すべての commit に `Signed-off-by:` 行（`git commit -s`）。
 
-変数・関数名は英語、コメント・コミットメッセージは日本語 OK。
-
 ## Claude Code 運用メモ
 
-- **ファイル命名は英語 kebab-case**、日本語ファイル名は禁止（AKARI ドキュメント規則）
 - **Rules File Backdoor 対策のドッグフード**: この repo 自身の context file（本 CLAUDE.md 含む）は ACE lint に掛ける
 - **spec 変更と実装変更は別 PR で**: v0.1 安定化まではとくに spec 単独 PR を優先
 - **他 AKARI リポへの言及は pointer のみ**: 内容転記禁止
