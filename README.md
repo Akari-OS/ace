@@ -1,6 +1,8 @@
 # ACE — Agent Context Engineering Framework
 
 > Standardize how AI agents read, respect, and reason about your code.
+>
+> 📜 **Type: Specification** — This repo holds the protocol spec only. A reference implementation is planned for Phase C. See [Known Implementations](#known-implementations).
 
 ## What is ACE?
 
